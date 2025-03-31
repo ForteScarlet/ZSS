@@ -26,6 +26,10 @@ function afterEnter() {
   reloading.value = false
 }
 
+function toGitHub() {
+  window.open("https://github.com/ForteScarlet/ZSS/blob/master/src/assets/zss.txt", "_blank")
+}
+
 </script>
 
 <template>
@@ -64,7 +68,7 @@ function afterEnter() {
                     :reset-time="0"
                     size="large"
                     :icon="GitHubIcon"
-                    @click=""> 贡献ZSS
+                    @click="toGitHub"> 贡献ZSS
                 </tiny-button>
               </tiny-col>
             </tiny-row>
