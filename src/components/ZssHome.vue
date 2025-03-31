@@ -47,35 +47,41 @@ function toGitHub() {
           <Transition name="roll" mode="out-in" :on-after-enter="afterEnter">
             <h1 class="zss-h1" :key="zssStr" v-text="zssStr"></h1>
           </Transition>
-          <tiny-layout>
-            <tiny-row>
-              <tiny-col>
-                <tiny-button
-                    type="info"
-                    :reset-time="0"
-                    size="large"
-                    :loading="reloading"
-                    :icon="ReplaceIcon"
-                    @click="handleClick">
-                  随机ZSS
-                </tiny-button>
-
-                <tiny-divider direction="vertical"></tiny-divider>
-
-                <tiny-button
-                    ghost
-                    type="default"
-                    :reset-time="0"
-                    size="large"
-                    :icon="GitHubIcon"
-                    @click="toGitHub"> 贡献ZSS
-                </tiny-button>
-              </tiny-col>
-            </tiny-row>
-          </tiny-layout>
 
         </tiny-col>
         <tiny-col class="col" :xs="2" :sm="2" :md="2" :lg="3" :xl="1">
+        </tiny-col>
+      </tiny-row>
+      <tiny-row>
+        <tiny-col :span="12">
+          <div class="button-list">
+
+            <div class="zss-button">
+              <tiny-button
+                  type="info"
+                  :reset-time="0"
+                  size="large"
+                  :loading="reloading"
+                  :icon="ReplaceIcon"
+                  @click="handleClick">
+                随机ZSS
+              </tiny-button>
+            </div>
+
+            <tiny-divider class="zss-btn-divider" :type="'dashed'" direction="vertical" />
+
+            <div class="zss-button">
+              <tiny-button
+                  ghost
+                  class="zss-button"
+                  type="default"
+                  :reset-time="0"
+                  size="large"
+                  :icon="GitHubIcon"
+                  @click="toGitHub"> 贡献ZSS
+              </tiny-button>
+            </div>
+          </div>
         </tiny-col>
       </tiny-row>
     </tiny-layout>
@@ -117,6 +123,7 @@ function toGitHub() {
 .zss-h1 {
   display: inline-block;
   position: relative;
+  white-space: nowrap; /* 防止换行 */
   /* 原有样式保持不变 */
 }
 
@@ -139,4 +146,45 @@ function toGitHub() {
   font-size: 5.2em;
   line-height: 1.5;
 }
+
+/* 针对手机尺寸的样式 */
+@media (max-width: 768px) {
+  .zss-tip {
+    font-size: 1.0em;
+  }
+
+  .zss-h1 {
+    font-size: 3em; /* 调整字体大小 */
+  }
+}
+
+.button-list {
+  padding-left: 25%;
+  padding-right: 25%;
+  display: -webkit-flex; /* Safari */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap; /* 允许换行 */
+}
+
+/* 针对手机尺寸的样式 */
+@media (max-width: 768px) {
+  .button-list {
+    padding-left: 0;
+    padding-right: 0;
+    flex-direction: column; /* 垂直排列 */
+    justify-content: space-evenly;
+  }
+
+  .zss-btn-divider {
+    display: none;
+  }
+
+  .zss-button {
+    margin-bottom: 16px;
+  }
+}
+
+
 </style>
