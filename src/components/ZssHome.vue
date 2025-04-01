@@ -1,6 +1,6 @@
 <script setup>
 import zss from '../assets/zss.txt?raw'
-import {TinyLayout, TinyRow, TinyCol, TinyButton, TinyDivider} from '@opentiny/vue'
+import {TinyLayout, TinyRow, TinyCol, TinyButton, TinyDivider, TinyContainer} from '@opentiny/vue'
 import {iconShare, iconConmentRefresh, iconLoadingShadow} from '@opentiny/vue-icon'
 
 import {ref} from "vue";
@@ -30,61 +30,102 @@ function toGitHub() {
   window.open("https://github.com/ForteScarlet/ZSS/blob/master/src/assets/zss.txt", "_blank")
 }
 
+function toXsy() {
+  window.open('https://xsy.forte.love/', '_blank')
+}
+
+function toBly() {
+  window.open('https://bly.forte.love/', '_blank')
+}
+
 </script>
 
 <template>
   <div>
-    <tiny-layout class="zss-layout">
-      <tiny-row class="head-row" :gutter="10" :align="'middle'" :flex="true">
-        <tiny-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
-        </tiny-col>
-      </tiny-row>
-      <tiny-row class="zss-row" :gutter="10" :align="'middle'" :flex="true">
-        <tiny-col class="col" :xs="2" :sm="2" :md="2" :lg="3" :xl="1">
-        </tiny-col>
-        <tiny-col class="col" :xs="8" :sm="8" :md="8" :lg="6" :xl="10">
-          <p class="zss-tip">你的ZSS是：</p>
-          <Transition name="roll" mode="out-in" :on-after-enter="afterEnter">
-            <h1 class="zss-h1" :key="zssStr" v-text="zssStr"></h1>
-          </Transition>
-
-        </tiny-col>
-        <tiny-col class="col" :xs="2" :sm="2" :md="2" :lg="3" :xl="1">
-        </tiny-col>
-      </tiny-row>
-      <tiny-row>
-        <tiny-col :span="12">
-          <div class="button-list">
-
-            <div class="zss-button">
+    <tiny-container :pattern="'classic'">
+      <template #header>
+        <tiny-layout class="header-layout">
+          <tiny-row class="header-row" :align="'middle'">
+            <tiny-col :span="6">
               <tiny-button
+                  class="header-btn"
+                  ghost
                   type="info"
                   :reset-time="0"
                   size="large"
-                  :loading="reloading"
-                  :icon="ReplaceIcon"
-                  @click="handleClick">
-                随机ZSS
+                  @click="toXsy"
+              >
+                XSY
               </tiny-button>
-            </div>
-
-            <tiny-divider class="zss-btn-divider" :type="'dashed'" direction="vertical" />
-
-            <div class="zss-button">
+            </tiny-col>
+            <tiny-col :span="6">
               <tiny-button
+                  class="header-btn"
                   ghost
-                  class="zss-button"
-                  type="default"
+                  type="info"
                   :reset-time="0"
                   size="large"
-                  :icon="GitHubIcon"
-                  @click="toGitHub"> 贡献ZSS
+                  @click="toBly"
+              >
+                BLY
               </tiny-button>
+            </tiny-col>
+          </tiny-row>
+        </tiny-layout>
+      </template>
+
+      <tiny-layout class="zss-layout">
+        <tiny-row class="head-row" :gutter="10" :align="'middle'" :flex="true">
+          <tiny-col :xs="12" :sm="12" :md="12" :lg="12" :xl="12">
+          </tiny-col>
+        </tiny-row>
+        <tiny-row class="zss-row" :gutter="10" :align="'middle'" :flex="true">
+          <tiny-col class="col" :xs="2" :sm="2" :md="2" :lg="3" :xl="1">
+          </tiny-col>
+          <tiny-col class="col" :xs="8" :sm="8" :md="8" :lg="6" :xl="10">
+            <p class="zss-tip">你的ZSS是：</p>
+            <Transition name="roll" mode="out-in" :on-after-enter="afterEnter">
+              <h1 class="zss-h1" :key="zssStr" v-text="zssStr"></h1>
+            </Transition>
+
+          </tiny-col>
+          <tiny-col class="col" :xs="2" :sm="2" :md="2" :lg="3" :xl="1">
+          </tiny-col>
+        </tiny-row>
+        <tiny-row>
+          <tiny-col :span="12">
+            <div class="button-list">
+
+              <div class="zss-button">
+                <tiny-button
+                    type="info"
+                    :reset-time="0"
+                    size="large"
+                    :loading="reloading"
+                    :icon="ReplaceIcon"
+                    @click="handleClick">
+                  随机ZSS
+                </tiny-button>
+              </div>
+
+              <tiny-divider class="zss-btn-divider" :type="'dashed'" direction="vertical" />
+
+              <div class="zss-button">
+                <tiny-button
+                    ghost
+                    class="zss-button"
+                    type="default"
+                    :reset-time="0"
+                    size="large"
+                    :icon="GitHubIcon"
+                    @click="toGitHub"> 贡献ZSS
+                </tiny-button>
+              </div>
             </div>
-          </div>
-        </tiny-col>
-      </tiny-row>
-    </tiny-layout>
+          </tiny-col>
+        </tiny-row>
+      </tiny-layout>
+    </tiny-container>
   </div>
 </template>
 
@@ -186,5 +227,9 @@ function toGitHub() {
   }
 }
 
+.header-row {
+  text-align: center;
+  padding-top: 2%;
+}
 
 </style>
